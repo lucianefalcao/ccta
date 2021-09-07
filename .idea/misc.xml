@@ -3,10 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/lucia/AndroidStudioProjects/CCTA/app/src/main/res/drawable/ic_launcher_background.xml" value="0.3851851851851852" />
-        <entry key="..\:/Users/lucia/AndroidStudioProjects/CCTA/app/src/main/res/layout/activity_home.xml" value="0.3671794871794872" />
-        <entry key="..\:/Users/lucia/AndroidStudioProjects/CCTA/app/src/main/res/layout/activity_login.xml" value="0.5" />
-        <entry key="..\:/Users/lucia/AndroidStudioProjects/CCTA/app/src/main/res/layout/activity_main.xml" value="0.67" />
+        <entry key="..\:/Users/naiar/StudioProjects/ccta/app/src/main/res/layout/activity_home.xml" value="0.1" />
+        <entry key="..\:/Users/naiar/StudioProjects/ccta/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.14166666666666666" />
       </map>
     </option>
   </component>
