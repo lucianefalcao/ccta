@@ -7,4 +7,11 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+// Cores adicionadas
+    <color name="cor_logo">#EC3434</color>
+    <color name="cor_noticias">#BB4B4B</color>
+    <color name="cor_eventos">#F37687</color>
+    <color name="cor_editais">#CE3434</color>
+    <color name="cor_documentos">#FC3263</color>
 </resources>
