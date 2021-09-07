@@ -10,12 +10,12 @@
 
 // Cores adicionadas
     <color name="cor_logo">#ED3237</color>
-    <color name="cor_noticias">#BB4B4B</color>
-    <color name="cor_eventos">#F37687</color>
-    <color name="cor_editais">#CE3434</color>
-    <color name="cor_documentos">#FC3263</color>
-    <color name="cor_eventos_dias">#F26085</color>
+    <color name="cor_escura1">#CE3434</color>
+    <color name="cor_escura2">#FC3263</color>
+    <color name="cor_intermediaria">#BB4B4B</color>
+    <color name="cor_clara1">#F26085</color>
+    <color name="cor_clara2">#F37687</color>
+    <color name="cor_clara3">#C671F1</color>
+    <color name="cor_clara4">#9A9BDF</color>
     <color name="cor_acervo">#5FCD91</color>
-    <color name="cor_perguntas">#9A9BDF</color>
-    <color name="cor_suporte">#C671F1</color>
 </resources>
