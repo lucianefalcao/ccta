@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">CCTA</string>
+    <string name="login">Login</string>
+    <string name="senha">Senha</string>
+    <string name="botao_login">Entrar</string>
+    <string name="title_activity_home">Home Activity</string>
 </resources>
