@@ -21,6 +21,7 @@ class MainActivity : AppCompatActivity() {
 
             val user = User(loginText.text.toString(), passwordText.text.toString())
             userInfo.putExtra("User", user);
+            userInfo.putExtra("password", user.password);
             startActivity(userInfo)
         }
     }
