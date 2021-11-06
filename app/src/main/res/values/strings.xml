@@ -4,4 +4,9 @@
     <string name="senha">Senha</string>
     <string name="botao_login">Entrar</string>
     <string name="title_activity_home" translatable="false">Home Activity</string>
+    <string name="about_center"  translatable="false">
+        Seja bem-vindo ao CCTA. Aqui você encontra notícias relacionadas a esta unidade de ensino, pesquisa e extensão,
+        além de informes de utilidade pública destinados à comunidade universitária e usuários em geral.
+    </string>
+
 </resources>
