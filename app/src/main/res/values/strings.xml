@@ -8,5 +8,8 @@
         Seja bem-vindo ao CCTA. Aqui você encontra notícias relacionadas a esta unidade de ensino, pesquisa e extensão,
         além de informes de utilidade pública destinados à comunidade universitária e usuários em geral.
     </string>
+    <string name="tela_login"  translatable="false">
+        Informe suas credenciais para ter acesso à nossa plataforma!
+    </string>
 
 </resources>
