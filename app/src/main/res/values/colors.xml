@@ -18,4 +18,14 @@
     <color name="cor_clara3">#C671F1</color>
     <color name="cor_clara4">#9A9BDF</color>
     <color name="cor_acervo">#5FCD91</color>
+
+// Cores chat
+    <color name="pink_1">#FE4E5A</color>
+    <color name="pink_2">#FF7184</color>
+    <color name="pink_3">#FF6C76</color>
+    <color name="black_1">#1E2022</color>
+    <color name="black_2">#343131</color>
+    <color name="gray_1">#EDEEF3</color>
+    <color name="gray_2">#7E7E7E</color>
+    <color name="gray_3">#9D9D9D</color>
 </resources>
