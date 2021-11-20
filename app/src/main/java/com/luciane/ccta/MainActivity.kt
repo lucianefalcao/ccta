@@ -17,12 +17,14 @@ class MainActivity : AppCompatActivity() {
         val buttonLogin = findViewById<Button>(R.id.button)
 
         buttonLogin.setOnClickListener {
-            val userInfo = Intent(this, HomeActivity::class.java)
+            //val userInfo = Intent(this, HomeActivity::class.java)
 
-            val user = User(loginText.text.toString(), passwordText.text.toString())
-            userInfo.putExtra("User", user);
-            userInfo.putExtra("password", user.password);
-            startActivity(userInfo)
+            //val user = User(loginText.text.toString(), passwordText.text.toString())
+            //userInfo.putExtra("User", user);
+            //userInfo.putExtra("password", user.password);
+            //startActivity(userInfo)
+            val toAboutCenter = Intent(this, AboutCenterActivity::class.java)
+            startActivity(toAboutCenter)
         }
     }
 }

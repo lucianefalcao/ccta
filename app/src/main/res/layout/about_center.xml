@@ -11,27 +11,31 @@
         android:id="@+id/imageView3"
         android:layout_width="match_parent"
         android:layout_height="413dp"
-        app:srcCompat="@drawable/image_14"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="-5dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/image_14" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
         android:layout_width="410dp"
         android:layout_height="490dp"
+        android:layout_marginTop="-150dp"
         android:layoutMode="opticalBounds"
         app:cardCornerRadius="40dp"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="276dp">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView3">
 
 
         <ScrollView
-            android:layout_width="416dp"
-            android:layout_height="448dp">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:baselineAligned="false"
                 android:orientation="vertical"
                 android:paddingBottom="45dp">
@@ -59,6 +63,13 @@
                     android:text="@string/about_center"
                     android:textColor="@color/black"
                     android:textSize="16sp" />
+
+                <ImageView
+                    android:id="@+id/ccta_map_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="40dp"
+                    app:srcCompat="@drawable/ccta_map" />
 
                 <TextView
                     android:id="@+id/textView5"
