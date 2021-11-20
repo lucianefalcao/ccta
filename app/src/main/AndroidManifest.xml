@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CCTA">
         <activity
-            android:name=".ChatActivity"
+            android:name=".activity.chat.ChatActivity"
             android:exported="false" />
         <activity
             android:name=".HomeActivity"

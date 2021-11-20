@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ChatActivity">
+    tools:context=".activity.chat.ChatActivity">
 
     <TextView
         android:id="@+id/textView"
@@ -31,6 +31,7 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewChat"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="32dp"
@@ -53,7 +54,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <ImageButton
-        android:id="@+id/buttonUserInputChat"
+        android:id="@+id/sendButtonUserInputChat"
         android:layout_width="35dp"
         android:layout_height="35dp"
         android:layout_marginStart="11dp"
@@ -72,10 +73,10 @@
         android:layout_marginStart="11dp"
         android:hint="Mensagem..."
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toBottomOf="@+id/buttonUserInputChat"
+        app:layout_constraintBottom_toBottomOf="@+id/sendButtonUserInputChat"
         app:layout_constraintEnd_toEndOf="@+id/viewUserInputChat"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/buttonUserInputChat"
-        app:layout_constraintTop_toTopOf="@+id/buttonUserInputChat" />
+        app:layout_constraintStart_toEndOf="@+id/sendButtonUserInputChat"
+        app:layout_constraintTop_toTopOf="@+id/sendButtonUserInputChat" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
