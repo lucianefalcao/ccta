@@ -107,5 +107,26 @@ class ChatActivity : AppCompatActivity() {
             .addOnFailureListener {
                 Log.d(TAG, "Failed to send message:\n${it.message}")
             }
+
+        val refLatestMessageFrom = FirebaseDatabase.getInstance()
+            .getReference("/latest-messages/$fromId/$toId")
+        val refLatestMessageTo = FirebaseDatabase.getInstance()
+            .getReference("/latest-messages/$toId/$fromId")
+
+        refLatestMessageFrom.setValue(chatMessage)
+            .addOnSuccessListener {
+                Log.d(TAG, "Latest message saved: ${refLatestMessageFrom.key}")
+            }
+            .addOnFailureListener {
+                Log.d(TAG, "Failed to save latest message:\n${it.message}")
+            }
+
+        refLatestMessageTo.setValue(chatMessage)
+            .addOnSuccessListener {
+                Log.d(TAG, "Latest message saved: ${refLatestMessageTo.key}")
+            }
+            .addOnFailureListener {
+                Log.d(TAG, "Failed to save latest message:\n${it.message}")
+            }
     }
 }
