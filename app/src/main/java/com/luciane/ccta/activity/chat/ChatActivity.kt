@@ -1,16 +1,36 @@
 package com.luciane.ccta.activity.chat
 
+import android.app.Activity
+import android.app.AlertDialog
+import android.content.DialogInterface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.InputType
+import android.util.Log
 import android.widget.ImageButton
 import android.widget.EditText
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.database.*
 import com.luciane.ccta.R
 import com.luciane.ccta.model.ChatMessage
+import android.content.SharedPreferences
 
 class ChatActivity : AppCompatActivity() {
-    var recyclerViewChatLog: RecyclerView? = null
-    var chatAdapter = ChatAdapter()
+    companion object{
+        val TAG = "ChatScreen"
+    }
+
+    private var recyclerViewChatLog: RecyclerView? = null
+    private var chatAdapter = ChatAdapter()
+
+    private var name: String? = null
+    private var fromId: String? = null
+    private val toId = "admin"
+
+    private val KEY_UID = "com.luciane.ccta.UID"
+    private val KEY_NAME = "com.luciane.ccta.NAME"
+    private val USER_PREFS = "USER_PREFS"
+    private var userSharedPreferences: SharedPreferences? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,45 +41,155 @@ class ChatActivity : AppCompatActivity() {
         recyclerViewChatLog = findViewById(R.id.recyclerViewChat)
         recyclerViewChatLog!!.setAdapter(chatAdapter)
 
-        listenForMessages()
-
         findViewById<ImageButton>(R.id.sendButtonUserInputChat).setOnClickListener {
             performSendMessage()
         }
+
+        checkUserIdentity()
     }
 
     private fun listenForMessages(){
-        val chatMessage1 = ChatMessage("", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.",
-            "", "", System.currentTimeMillis()/1000,
-            ChatMessage.MessageType.RIGHT)
-        val chatMessage2 = ChatMessage("", "Lorem ipsum dolor sit amet, consectetur adipiscing elit?",
-            "", "", System.currentTimeMillis()/1000,
-            ChatMessage.MessageType.LEFT)
-        val chatMessage3 = ChatMessage("", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-            "", "", System.currentTimeMillis()/1000,
-            ChatMessage.MessageType.RIGHT)
-        val chatMessage4 = ChatMessage("", "Lorem ipsum dolor sit amet, consectetur adipiscing elit?",
-            "", "", System.currentTimeMillis()/1000,
-            ChatMessage.MessageType.LEFT)
+        val fromId = fromId
+        val toId = toId
 
-        chatAdapter.addMessage(chatMessage1)
-        chatAdapter.addMessage(chatMessage2)
-        chatAdapter.addMessage(chatMessage3)
-        chatAdapter.addMessage(chatMessage4)
+        val ref = FirebaseDatabase.getInstance().getReference("/user-messages/$fromId/$toId")
+        ref.addChildEventListener(object: ChildEventListener {
+            override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
+                val chatMessage = snapshot.getValue(ChatMessage::class.java)
+                Log.d(TAG, chatMessage?.text!!)
+                if(chatMessage.fromId == fromId){
+                    chatMessage.type = ChatMessage.MessageType.RIGHT
+                } else{
+                    chatMessage.type = ChatMessage.MessageType.LEFT
+                }
+                chatAdapter.addMessage(chatMessage)
+            }
+
+            override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {
+                TODO("Not yet implemented")
+            }
+
+            override fun onChildRemoved(snapshot: DataSnapshot) {
+                TODO("Not yet implemented")
+            }
+
+            override fun onChildMoved(snapshot: DataSnapshot, previousChildName: String?) {
+                TODO("Not yet implemented")
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+
+        })
     }
 
     private fun performSendMessage(){
-        val text = findViewById<EditText>(R.id.editTextUserInputChat).text.toString()
+        val editText = findViewById<EditText>(R.id.editTextUserInputChat)
+        val text = editText.text.toString()
 
-        val chatMessage = ChatMessage("", text, "",
-                                    "", System.currentTimeMillis()/1000)
+        val fromId = if(chatAdapter.itemCount % 2 == 0) this.fromId!! else toId
+        val toId = if(chatAdapter.itemCount % 2 == 0) toId else fromId
 
-        if(chatAdapter.itemCount % 2 == 0){
-            chatMessage.type = ChatMessage.MessageType.RIGHT
-        } else{
-            chatMessage.type = ChatMessage.MessageType.LEFT
+        val refFrom = FirebaseDatabase.getInstance()
+            .getReference("/user-messages/$fromId/$toId").push()
+        val refTo = FirebaseDatabase.getInstance()
+            .getReference("/user-messages/$toId/$fromId").push()
+
+        val chatMessage = ChatMessage(refFrom.key!!, text, fromId,
+                                    toId, System.currentTimeMillis()/1000)
+
+        refFrom.setValue(chatMessage)
+            .addOnSuccessListener {
+                Log.d(TAG, "Saved our chat message: ${refFrom.key}")
+                editText.text.clear()
+                recyclerViewChatLog!!.scrollToPosition(chatAdapter.itemCount - 1)
+            }
+            .addOnFailureListener {
+                Log.d(TAG, "Failed to send message:\n${it.message}")
+            }
+
+        refTo.setValue(chatMessage)
+            .addOnSuccessListener {
+                Log.d(TAG, "Saved our chat message: ${refTo.key}")
+            }
+            .addOnFailureListener {
+                Log.d(TAG, "Failed to send message:\n${it.message}")
+            }
+
+        val refLatestMessageFrom = FirebaseDatabase.getInstance()
+            .getReference("/latest-messages/$fromId/$toId")
+        val refLatestMessageTo = FirebaseDatabase.getInstance()
+            .getReference("/latest-messages/$toId/$fromId")
+
+        refLatestMessageFrom.setValue(chatMessage)
+            .addOnSuccessListener {
+                Log.d(TAG, "Latest message saved: ${refLatestMessageFrom.key}")
+            }
+            .addOnFailureListener {
+                Log.d(TAG, "Failed to save latest message:\n${it.message}")
+            }
+
+        refLatestMessageTo.setValue(chatMessage)
+            .addOnSuccessListener {
+                Log.d(TAG, "Latest message saved: ${refLatestMessageTo.key}")
+            }
+            .addOnFailureListener {
+                Log.d(TAG, "Failed to save latest message:\n${it.message}")
+            }
+    }
+
+    private fun checkUserIdentity(){
+        userSharedPreferences = getSharedPreferences(USER_PREFS, Activity.MODE_PRIVATE)
+        name = userSharedPreferences!!.getString(KEY_NAME, null)
+        if (name == null){
+            showInputDialog()
+        } else {
+            fromId = userSharedPreferences!!.getString(KEY_UID, null)
+            listenForMessages()
         }
+    }
 
-        chatAdapter.addMessage(chatMessage)
+    private fun showInputDialog(){
+        val builder: AlertDialog.Builder = android.app.AlertDialog.Builder(this)
+        builder.setTitle("Qual é seu nome?")
+
+        val input = EditText(this)
+        input.setHint("Nome")
+        input.inputType = InputType.TYPE_CLASS_TEXT
+        input.setError("Digite seu nome")
+        builder.setView(input)
+
+        builder.setPositiveButton("Começar conversa",
+            DialogInterface.OnClickListener { dialog, which ->
+                if(input.text.toString().isNotBlank()){
+                    saveUserPreferences(input.text.toString())
+                } else {
+                    finish()
+                }
+        })
+        builder.setNegativeButton("Cancelar",
+            DialogInterface.OnClickListener { dialog, which ->
+                dialog.cancel()
+                finish()
+        })
+
+        builder.show()
+    }
+
+    private fun saveUserPreferences(name: String){
+        this.name = name
+        val refFrom = FirebaseDatabase.getInstance().getReference("/user-messages").push()
+        fromId = refFrom.key
+        Log.d(TAG, "User uid generated successfully: $fromId")
+
+        listenForMessages()
+
+        val editor: SharedPreferences.Editor = userSharedPreferences!!.edit()
+        editor.putString(KEY_NAME, name)
+        editor.putString(KEY_UID, fromId)
+
+        editor.commit()
+
     }
 }
