@@ -1,27 +1,36 @@
 package com.luciane.ccta.activity.chat
 
+import android.app.Activity
+import android.app.AlertDialog
+import android.content.DialogInterface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.InputType
 import android.util.Log
 import android.widget.ImageButton
 import android.widget.EditText
 import androidx.recyclerview.widget.RecyclerView
-import com.google.firebase.database.ChildEventListener
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.*
 import com.luciane.ccta.R
 import com.luciane.ccta.model.ChatMessage
+import android.content.SharedPreferences
 
 class ChatActivity : AppCompatActivity() {
     companion object{
         val TAG = "ChatScreen"
-        val FROM_ID = "testUser"
-        val TO_ID = "admin"
     }
 
-    var recyclerViewChatLog: RecyclerView? = null
-    var chatAdapter = ChatAdapter()
+    private var recyclerViewChatLog: RecyclerView? = null
+    private var chatAdapter = ChatAdapter()
+
+    private var name: String? = null
+    private var fromId: String? = null
+    private val toId = "admin"
+
+    private val KEY_UID = "com.luciane.ccta.UID"
+    private val KEY_NAME = "com.luciane.ccta.NAME"
+    private val USER_PREFS = "USER_PREFS"
+    private var userSharedPreferences: SharedPreferences? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,23 +41,23 @@ class ChatActivity : AppCompatActivity() {
         recyclerViewChatLog = findViewById(R.id.recyclerViewChat)
         recyclerViewChatLog!!.setAdapter(chatAdapter)
 
-        listenForMessages()
-
         findViewById<ImageButton>(R.id.sendButtonUserInputChat).setOnClickListener {
             performSendMessage()
         }
+
+        checkUserIdentity()
     }
 
     private fun listenForMessages(){
-        val fromId = FROM_ID
-        val toId = TO_ID
+        val fromId = fromId
+        val toId = toId
 
         val ref = FirebaseDatabase.getInstance().getReference("/user-messages/$fromId/$toId")
         ref.addChildEventListener(object: ChildEventListener {
             override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
                 val chatMessage = snapshot.getValue(ChatMessage::class.java)
                 Log.d(TAG, chatMessage?.text!!)
-                if(chatMessage.fromId == FROM_ID){
+                if(chatMessage.fromId == fromId){
                     chatMessage.type = ChatMessage.MessageType.RIGHT
                 } else{
                     chatMessage.type = ChatMessage.MessageType.LEFT
@@ -79,8 +88,8 @@ class ChatActivity : AppCompatActivity() {
         val editText = findViewById<EditText>(R.id.editTextUserInputChat)
         val text = editText.text.toString()
 
-        val fromId = if(chatAdapter.itemCount % 2 == 0) FROM_ID else TO_ID
-        val toId = if(chatAdapter.itemCount % 2 == 0) TO_ID else FROM_ID
+        val fromId = if(chatAdapter.itemCount % 2 == 0) this.fromId!! else toId
+        val toId = if(chatAdapter.itemCount % 2 == 0) toId else fromId
 
         val refFrom = FirebaseDatabase.getInstance()
             .getReference("/user-messages/$fromId/$toId").push()
@@ -128,5 +137,59 @@ class ChatActivity : AppCompatActivity() {
             .addOnFailureListener {
                 Log.d(TAG, "Failed to save latest message:\n${it.message}")
             }
+    }
+
+    private fun checkUserIdentity(){
+        userSharedPreferences = getSharedPreferences(USER_PREFS, Activity.MODE_PRIVATE)
+        name = userSharedPreferences!!.getString(KEY_NAME, null)
+        if (name == null){
+            showInputDialog()
+        } else {
+            fromId = userSharedPreferences!!.getString(KEY_UID, null)
+            listenForMessages()
+        }
+    }
+
+    private fun showInputDialog(){
+        val builder: AlertDialog.Builder = android.app.AlertDialog.Builder(this)
+        builder.setTitle("Qual é seu nome?")
+
+        val input = EditText(this)
+        input.setHint("Nome")
+        input.inputType = InputType.TYPE_CLASS_TEXT
+        input.setError("Digite seu nome")
+        builder.setView(input)
+
+        builder.setPositiveButton("Começar conversa",
+            DialogInterface.OnClickListener { dialog, which ->
+                if(input.text.toString().isNotBlank()){
+                    saveUserPreferences(input.text.toString())
+                } else {
+                    finish()
+                }
+        })
+        builder.setNegativeButton("Cancelar",
+            DialogInterface.OnClickListener { dialog, which ->
+                dialog.cancel()
+                finish()
+        })
+
+        builder.show()
+    }
+
+    private fun saveUserPreferences(name: String){
+        this.name = name
+        val refFrom = FirebaseDatabase.getInstance().getReference("/user-messages").push()
+        fromId = refFrom.key
+        Log.d(TAG, "User uid generated successfully: $fromId")
+
+        listenForMessages()
+
+        val editor: SharedPreferences.Editor = userSharedPreferences!!.edit()
+        editor.putString(KEY_NAME, name)
+        editor.putString(KEY_UID, fromId)
+
+        editor.commit()
+
     }
 }
