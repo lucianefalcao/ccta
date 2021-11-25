@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RegistrationActivity">
+
+    <ScrollView
+        android:layout_width="410dp"
+        android:layout_height="676dp"
+        android:foregroundGravity="center"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+
+            android:orientation="vertical"
+            android:paddingBottom="50dp">
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="273dp"
+                android:layout_height="280dp"
+                android:layout_marginTop="50dp"
+                android:layout_marginBottom="20dp"
+                app:srcCompat="@drawable/ilustration_3" />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="305dp"
+                android:layout_height="36dp"
+                android:layout_marginBottom="10dp"
+                android:text="Cadastre-se"
+                android:textColor="#1E2022"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="305dp"
+                android:layout_height="48dp"
+                android:text="Por favor, infome seus dados pessoais!"
+                android:textColor="#9D9D9D"
+                android:textSize="16sp" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="307dp"
+                android:layout_height="58dp"
+                android:layout_marginBottom="10dp"
+                android:textColorHint="@color/pink"
+                android:textSize="5dp"
+                app:boxCornerRadiusBottomEnd="8dp"
+                app:boxCornerRadiusBottomStart="8dp"
+                app:boxCornerRadiusTopEnd="8dp"
+                app:boxCornerRadiusTopStart="8dp"
+                app:boxStrokeColor="@color/pink"
+                app:hintTextAppearance="@style/TextAppearance.AppCompat.Small"
+                app:hintTextColor="@color/pink"
+                tools:layout_editor_absoluteX="53dp"
+                tools:layout_editor_absoluteY="428dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Nome"
+                    android:inputType="textPersonName" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="307dp"
+                android:layout_height="58dp"
+                android:layout_marginBottom="10dp"
+                android:textColorHint="@color/pink"
+                android:textSize="5dp"
+                app:boxCornerRadiusBottomEnd="8dp"
+                app:boxCornerRadiusBottomStart="8dp"
+                app:boxCornerRadiusTopEnd="8dp"
+                app:boxCornerRadiusTopStart="8dp"
+                app:boxStrokeColor="@color/pink"
+                app:hintTextAppearance="@style/TextAppearance.AppCompat.Small"
+                tools:layout_editor_absoluteX="53dp"
+                tools:layout_editor_absoluteY="428dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="E-mail"
+                    android:inputType="textPersonName"
+                    android:textColorHint="@color/pink" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="305dp"
+                android:layout_height="58dp"
+                android:layout_marginBottom="10dp"
+                android:textColorHint="@color/pink"
+                android:textSize="5dp"
+                app:boxCornerRadiusBottomEnd="8dp"
+                app:boxCornerRadiusBottomStart="8dp"
+                app:boxCornerRadiusTopEnd="8dp"
+                app:boxCornerRadiusTopStart="8dp"
+                app:boxStrokeColor="@color/pink"
+                app:hintTextAppearance="@style/TextAppearance.AppCompat.Small"
+                tools:layout_editor_absoluteX="53dp"
+                tools:layout_editor_absoluteY="497dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Endereço"
+                    android:inputType="textPersonName" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="307dp"
+                android:layout_height="58dp"
+                android:layout_marginBottom="10dp"
+                android:textColorHint="@color/pink"
+                android:textSize="5dp"
+                app:boxCornerRadiusBottomEnd="8dp"
+                app:boxCornerRadiusBottomStart="8dp"
+                app:boxCornerRadiusTopEnd="8dp"
+                app:boxCornerRadiusTopStart="8dp"
+                app:boxStrokeColor="@color/pink"
+                app:hintTextAppearance="@style/TextAppearance.AppCompat.Small"
+                tools:layout_editor_absoluteX="53dp"
+                tools:layout_editor_absoluteY="428dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Telefone"
+                    android:inputType="textPersonName" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="307dp"
+                android:layout_height="58dp"
+                android:layout_marginBottom="10dp"
+                android:textColorHint="@color/pink"
+                android:textSize="5dp"
+                app:boxCornerRadiusBottomEnd="8dp"
+                app:boxCornerRadiusBottomStart="8dp"
+                app:boxCornerRadiusTopEnd="8dp"
+                app:boxCornerRadiusTopStart="8dp"
+                app:boxStrokeColor="@color/pink"
+                app:hintTextAppearance="@style/TextAppearance.AppCompat.Small"
+                tools:layout_editor_absoluteX="53dp"
+                tools:layout_editor_absoluteY="428dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Senha"
+                    android:inputType="textPersonName" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="307dp"
+                android:layout_height="58dp"
+                android:layout_marginBottom="20dp"
+                android:textColorHint="@color/pink"
+                android:textSize="5dp"
+                app:boxCornerRadiusBottomEnd="8dp"
+                app:boxCornerRadiusBottomStart="8dp"
+                app:boxCornerRadiusTopEnd="8dp"
+                app:boxCornerRadiusTopStart="8dp"
+                app:boxStrokeColor="@color/pink"
+                app:hintTextAppearance="@style/TextAppearance.AppCompat.Small"
+                tools:layout_editor_absoluteX="53dp"
+                tools:layout_editor_absoluteY="428dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Confirme sua senha"
+                    android:inputType="textPersonName" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TableLayout
+                android:layout_width="307dp"
+                android:layout_height="match_parent">
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <CheckBox
+                        android:id="@+id/checkBox"
+                        android:layout_width="37dp"
+                        android:layout_height="36dp" />
+
+                    <TextView
+                        android:id="@+id/textView8"
+                        android:layout_width="157dp"
+                        android:layout_height="17dp"
+                        android:text="Eu li e concordo com os "
+                        android:textColor="#9D9D9D"
+                        android:textSize="14sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.381"
+                        app:layout_constraintStart_toStartOf="parent"
+                        tools:layout_editor_absoluteY="670dp" />
+
+                    <TextView
+                        android:id="@+id/textView9"
+                        android:layout_width="wrap_content"
+                        android:layout_height="17dp"
+                        android:text="Termos de Uso"
+                        android:textColor="#FE4F5B"
+                        android:textSize="14sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.871"
+                        app:layout_constraintStart_toStartOf="parent"
+                        tools:layout_editor_absoluteY="670dp" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/textView10"
+                        android:layout_width="52dp"
+                        android:layout_height="17dp"
+                        android:text="e com a"
+                        android:textColor="#9D9D9D"
+                        android:textSize="14sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.381"
+                        app:layout_constraintStart_toStartOf="parent"
+                        tools:layout_editor_absoluteY="670dp" />
+
+                    <TextView
+                        android:id="@+id/textView11"
+                        android:layout_width="wrap_content"
+                        android:layout_height="17dp"
+                        android:text="Política de Privacidade."
+                        android:textColor="#FE4F5B"
+                        android:textSize="14sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.871"
+                        app:layout_constraintStart_toStartOf="parent"
+                        tools:layout_editor_absoluteY="670dp" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </TableLayout>
+
+            <Button
+                android:id="@+id/button"
+                android:layout_width="306dp"
+                android:layout_height="62dp"
+                android:layout_marginTop="20dp"
+                android:backgroundTint="#FE4F5B"
+                android:text="Cadastrar"
+                app:cornerRadius="10dp"
+                tools:layout_editor_absoluteX="53dp"
+                tools:layout_editor_absoluteY="585dp" />
+        </LinearLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

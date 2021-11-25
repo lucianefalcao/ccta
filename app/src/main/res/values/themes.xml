@@ -17,6 +17,15 @@
     <style name="Theme.CCTA.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+        <item name="colorPrimary">@color/cor_logo</item>
+        <item name="colorPrimaryVariant">@color/cor_intermediaria</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/cor_clara1</item>
+        <item name="colorSecondaryVariant">@color/cor_clara2</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
     </style>
 
     <style name="Theme.CCTA.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
