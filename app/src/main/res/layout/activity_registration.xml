@@ -65,6 +65,7 @@
                 tools:layout_editor_absoluteY="428dp">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/nome"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Nome"
@@ -115,6 +116,7 @@
                 tools:layout_editor_absoluteY="497dp">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/endereco"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Endereço"
@@ -138,6 +140,7 @@
                 tools:layout_editor_absoluteY="428dp">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/telefone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Telefone"
