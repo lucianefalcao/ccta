@@ -89,6 +89,7 @@
                 tools:layout_editor_absoluteY="428dp">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="E-mail"
@@ -161,6 +162,7 @@
                 tools:layout_editor_absoluteY="428dp">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/senha"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Senha"
