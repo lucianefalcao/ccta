@@ -17,13 +17,6 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        val buttonInit = findViewById<Button>(R.id.button)
-
-        buttonInit.setOnClickListener {
-            startActivity(Intent(this, HomeActivity::class.java))
-            finish()
-        }
-
         val forgotPassword = findViewById<TextView>(R.id.textView6)
 
         forgotPassword.setOnClickListener {
@@ -66,7 +59,7 @@ class LoginActivity : AppCompatActivity() {
                                         Toast.LENGTH_SHORT
                                     ).show()
 
-                                    val intent = Intent(this@LoginActivity, AboutCenterActivity::class.java)
+                                    val intent = Intent(this@LoginActivity, HomeActivity::class.java)
                                     intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                                     intent.putExtra("user_id", FirebaseAuth.getInstance().currentUser!!.uid)
                                     intent.putExtra("email_id", email)

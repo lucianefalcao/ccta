@@ -14,7 +14,7 @@ class InitActivity : AppCompatActivity() {
         val buttonInit = findViewById<Button>(R.id.button)
 
         buttonInit.setOnClickListener {
-            startActivity(Intent(this, AboutCenterActivity::class.java))
+            startActivity(Intent(this, HomeActivity::class.java))
             finish()
         }
 
