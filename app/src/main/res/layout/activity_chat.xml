@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="34dp"
-        android:layout_marginTop="57dp"
+        android:layout_marginTop="16dp"
         android:text="Fale com nosso"
         android:textColor="@color/pink_1"
         android:textSize="15sp"
