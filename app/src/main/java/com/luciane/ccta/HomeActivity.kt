@@ -22,7 +22,8 @@ class HomeActivity : AppCompatActivity() {
         }
 
         findViewById<ImageButton>(R.id.editaisButtonUserInputHome).setOnClickListener {
-
+            val intent = Intent(this, EditaisActivity::class.java)
+            startActivity(intent)
         }
 
         findViewById<ImageButton>(R.id.chatButtonUserInputHome).setOnClickListener {
