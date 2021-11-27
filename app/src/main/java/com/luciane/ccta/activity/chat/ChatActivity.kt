@@ -14,6 +14,9 @@ import com.google.firebase.database.*
 import com.luciane.ccta.R
 import com.luciane.ccta.model.ChatMessage
 import android.content.SharedPreferences
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+import java.time.format.FormatStyle
 
 class ChatActivity : AppCompatActivity() {
     companion object{
@@ -35,8 +38,6 @@ class ChatActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chat)
-
-        supportActionBar?.title = "Chat"
 
         recyclerViewChatLog = findViewById(R.id.recyclerViewChat)
         recyclerViewChatLog!!.setAdapter(chatAdapter)
@@ -88,16 +89,17 @@ class ChatActivity : AppCompatActivity() {
         val editText = findViewById<EditText>(R.id.editTextUserInputChat)
         val text = editText.text.toString()
 
+        val sendAtDateTime = getFormatedDateTimeDayMonthYearHourMinute()
+
         val fromId = if(chatAdapter.itemCount % 2 == 0) this.fromId!! else toId
-        val toId = if(chatAdapter.itemCount % 2 == 0) toId else fromId
+        val toId = if(chatAdapter.itemCount % 2 == 0) toId else this.fromId!!
 
         val refFrom = FirebaseDatabase.getInstance()
             .getReference("/user-messages/$fromId/$toId").push()
         val refTo = FirebaseDatabase.getInstance()
             .getReference("/user-messages/$toId/$fromId").push()
 
-        val chatMessage = ChatMessage(refFrom.key!!, text, fromId,
-                                    toId, System.currentTimeMillis()/1000)
+        val chatMessage = ChatMessage(refFrom.key!!, text, fromId, toId, sendAtDateTime)
 
         refFrom.setValue(chatMessage)
             .addOnSuccessListener {
@@ -191,5 +193,11 @@ class ChatActivity : AppCompatActivity() {
 
         editor.commit()
 
+    }
+
+    private fun getFormatedDateTimeDayMonthYearHourMinute(): String{
+        val currentDateTime = LocalDateTime.now()
+        val formatter = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT, FormatStyle.SHORT)
+        return currentDateTime.format(formatter)
     }
 }

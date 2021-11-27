@@ -19,26 +19,31 @@ class ChatAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             val itemView = LayoutInflater.from(parent.context)
                 .inflate(R.layout.chat_to_row, parent, false)
 
-            return ChatToItem(itemView)
+            return ChatItem(itemView)
         } else {
             val itemView = LayoutInflater.from(parent.context)
                 .inflate(R.layout.chat_from_row, parent, false)
 
-            return ChatFromItem(itemView)
+            return ChatItem(itemView)
         }
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val message = this.messageList[position]
         val text = message.text
+        val sendAtDateTime = message.sendAtDateTime
 
         if(holder.itemViewType == CHATTO){
-            val viewItem = holder as ChatToItem
+            val viewItem = holder as ChatItem
             viewItem.itemView.findViewById<TextView>(R.id.textViewChatTo).text = text
+            viewItem.itemView
+                .findViewById<TextView>(R.id.textViewSendAtDateTimeChatTo).text = sendAtDateTime
 
         } else{
-            val viewItem = holder as ChatFromItem
+            val viewItem = holder as ChatItem
             viewItem.itemView.findViewById<TextView>(R.id.textViewChatFrom).text = text
+            viewItem.itemView
+                .findViewById<TextView>(R.id.textViewSendAtDateTimeChatFrom).text = sendAtDateTime
         }
     }
 
@@ -60,7 +65,5 @@ class ChatAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         notifyDataSetChanged()
     }
 
-    class ChatToItem internal constructor(view: View) : RecyclerView.ViewHolder(view)
-
-    class ChatFromItem internal constructor(view: View) : RecyclerView.ViewHolder(view)
+    class ChatItem internal constructor(view: View) : RecyclerView.ViewHolder(view)
 }
