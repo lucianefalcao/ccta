@@ -6,35 +6,173 @@
     android:layout_height="match_parent"
     tools:context=".HomeActivity">
 
+    <!-- Header -->
     <TextView
-        android:id="@+id/viewPassword"
-        android:layout_width="251dp"
-        android:layout_height="41dp"
-        android:layout_marginTop="316dp"
-        android:text="zxczczxc"
-        android:textSize="30sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/viewLogin"
-        android:layout_width="251dp"
-        android:layout_height="41dp"
-        android:layout_marginTop="228dp"
-        android:text="zxczczxc"
-        android:textSize="30sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/chatButton"
+        android:id="@+id/textViewTitleHome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
-        android:text="Chat"
-        app:layout_constraintEnd_toEndOf="@+id/viewPassword"
-        app:layout_constraintStart_toStartOf="@+id/viewPassword"
-        app:layout_constraintTop_toBottomOf="@+id/viewPassword" />
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:text="Bem-vindo ao"
+        android:textColor="@color/pink_2"
+        android:textSize="15sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewSubTitleHome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:maxWidth="256dp"
+        android:text="Centro de Comunicação, Turismo e Artes"
+        android:textColor="@color/black_1"
+        android:textSize="22sp"
+        app:layout_constraintStart_toStartOf="@+id/textViewTitleHome"
+        app:layout_constraintTop_toBottomOf="@+id/textViewTitleHome" />
+
+    <!-- Options -->
+    <ImageButton
+        android:id="@+id/sobreButtonUserInputHome"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/rounded_button_home"
+        app:layout_constraintEnd_toStartOf="@+id/eventosButtonUserInputHome"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewSubTitleHome"
+        app:srcCompat="@drawable/info" />
+    <TextView
+        android:id="@+id/textViewSobreHome"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Sobre o CCTA"
+        android:textAlignment="center"
+        android:textColor="@color/pink_2"
+        app:layout_constraintEnd_toEndOf="@+id/sobreButtonUserInputHome"
+        app:layout_constraintStart_toStartOf="@+id/sobreButtonUserInputHome"
+        app:layout_constraintTop_toBottomOf="@+id/sobreButtonUserInputHome" />
+
+    <ImageButton
+        android:id="@+id/eventosButtonUserInputHome"
+        android:layout_width="60dp"
+        android:layout_height="0dp"
+        android:background="@drawable/rounded_button_home"
+        app:layout_constraintBottom_toBottomOf="@+id/sobreButtonUserInputHome"
+        app:layout_constraintEnd_toStartOf="@+id/editaisButtonUserInputHome"
+        app:layout_constraintStart_toEndOf="@+id/sobreButtonUserInputHome"
+        app:layout_constraintTop_toTopOf="@+id/sobreButtonUserInputHome"
+        app:srcCompat="@drawable/calendar" />
+    <TextView
+        android:id="@+id/textViewEventosHome"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Eventos"
+        android:textAlignment="center"
+        android:textColor="@color/pink_2"
+        app:layout_constraintEnd_toEndOf="@+id/eventosButtonUserInputHome"
+        app:layout_constraintStart_toStartOf="@+id/eventosButtonUserInputHome"
+        app:layout_constraintTop_toBottomOf="@+id/eventosButtonUserInputHome" />
+
+    <ImageButton
+        android:id="@+id/editaisButtonUserInputHome"
+        android:layout_width="60dp"
+        android:layout_height="0dp"
+        android:background="@drawable/rounded_button_home"
+        app:layout_constraintBottom_toBottomOf="@+id/eventosButtonUserInputHome"
+        app:layout_constraintEnd_toStartOf="@+id/chatButtonUserInputHome"
+        app:layout_constraintStart_toEndOf="@+id/eventosButtonUserInputHome"
+        app:layout_constraintTop_toTopOf="@+id/eventosButtonUserInputHome"
+        app:srcCompat="@drawable/spreadsheet" />
+    <TextView
+        android:id="@+id/textViewEditaisHome"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Editais"
+        android:textAlignment="center"
+        android:textColor="@color/pink_2"
+        app:layout_constraintEnd_toEndOf="@+id/editaisButtonUserInputHome"
+        app:layout_constraintStart_toStartOf="@+id/editaisButtonUserInputHome"
+        app:layout_constraintTop_toBottomOf="@+id/editaisButtonUserInputHome" />
+
+    <ImageButton
+        android:id="@+id/chatButtonUserInputHome"
+        android:layout_width="60dp"
+        android:layout_height="0dp"
+        android:background="@drawable/rounded_button_home"
+        app:layout_constraintBottom_toBottomOf="@+id/editaisButtonUserInputHome"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/editaisButtonUserInputHome"
+        app:layout_constraintTop_toTopOf="@+id/editaisButtonUserInputHome"
+        app:srcCompat="@drawable/chat" />
+    <TextView
+        android:id="@+id/textViewChatHome"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Fale conosco"
+        android:textAlignment="center"
+        android:textColor="@color/pink_2"
+        app:layout_constraintEnd_toEndOf="@+id/chatButtonUserInputHome"
+        app:layout_constraintStart_toStartOf="@+id/chatButtonUserInputHome"
+        app:layout_constraintTop_toBottomOf="@+id/chatButtonUserInputHome" />
+
+    <!-- Notícias -->
+    <TextView
+        android:id="@+id/textViewNoticiasTitleHome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="40dp"
+        android:text="Notícias"
+        android:textColor="@color/black_1"
+        android:textSize="22sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewSobreHome" />
+
+    <TextView
+        android:id="@+id/textViewVerMaisHome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="32dp"
+        android:text="Ver mais"
+        android:textColor="@color/pink_2"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/textViewNoticiasTitleHome"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textViewNoticiasTitleHome" />
+
+    <LinearLayout
+        android:id="@+id/linearLayoutNoticiasHome"
+        android:layout_width="0dp"
+        android:layout_height="180dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/textViewNoticiasTitleHome"
+        app:layout_constraintTop_toBottomOf="@+id/textViewNoticiasTitleHome"></LinearLayout>
+
+    <!-- Editais -->
+    <TextView
+        android:id="@+id/textViewEditaisTitleHome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Últimos editais"
+        android:textColor="@color/black_1"
+        android:textSize="22sp"
+        app:layout_constraintStart_toStartOf="@+id/textViewNoticiasTitleHome"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayoutNoticiasHome" />
+
+    <LinearLayout
+        android:id="@+id/linearLayoutEditaisHome"
+        android:layout_width="0dp"
+        android:layout_height="180dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/textViewEditaisTitleHome"
+        app:layout_constraintTop_toBottomOf="@+id/textViewEditaisTitleHome"></LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
