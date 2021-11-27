@@ -18,7 +18,8 @@ class HomeActivity : AppCompatActivity() {
         }
 
         findViewById<ImageButton>(R.id.eventosButtonUserInputHome).setOnClickListener {
-
+            val intent = Intent(this, EventsActivity::class.java)
+            startActivity(intent)
         }
 
         findViewById<ImageButton>(R.id.editaisButtonUserInputHome).setOnClickListener {
