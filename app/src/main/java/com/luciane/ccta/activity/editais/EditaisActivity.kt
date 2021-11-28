@@ -1,7 +1,8 @@
-package com.luciane.ccta
+package com.luciane.ccta.activity.editais
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.luciane.ccta.R
 
 class EditaisActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
