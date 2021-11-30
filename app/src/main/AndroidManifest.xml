@@ -13,6 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CCTA.NoActionBar">
         <activity
+            android:name=".activity.noticias.NoticiasActivity"
+            android:exported="false" />
+        <activity
             android:name=".activity.editais.EditaisActivity"
             android:exported="false" />
         <activity

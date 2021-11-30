@@ -7,12 +7,14 @@ import android.os.Bundle
 import android.content.Intent
 import android.util.Log
 import android.widget.ImageButton
+import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.firestore.FirebaseFirestore
 import com.luciane.ccta.activity.chat.ChatActivity
 import com.luciane.ccta.activity.editais.EditaisActivity
 import com.luciane.ccta.activity.editais.EditaisAdapter
+import com.luciane.ccta.activity.noticias.NoticiasActivity
 import com.luciane.ccta.model.Edital
 
 class HomeActivity : AppCompatActivity() {
@@ -43,6 +45,11 @@ class HomeActivity : AppCompatActivity() {
 
         findViewById<ImageButton>(R.id.chatButtonUserInputHome).setOnClickListener {
             val intent = Intent(this, ChatActivity::class.java)
+            startActivity(intent)
+        }
+
+        findViewById<TextView>(R.id.textViewVerMaisNoticiasHome).setOnClickListener {
+            val intent = Intent(this, NoticiasActivity::class.java)
             startActivity(intent)
         }
 
