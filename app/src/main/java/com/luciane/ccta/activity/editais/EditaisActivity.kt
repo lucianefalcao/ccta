@@ -1,5 +1,7 @@
 package com.luciane.ccta.activity.editais
 
+import android.app.DownloadManager
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -20,6 +22,7 @@ class EditaisActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_editais)
 
+        editaisAdapter.downloadManager = getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
         recyclerViewEditais = findViewById(R.id.recyclerViewEditais)
         recyclerViewEditais!!.setAdapter(editaisAdapter)
 
@@ -36,7 +39,7 @@ class EditaisActivity : AppCompatActivity() {
 
             if (snapshot != null) {
                 val editais = mutableListOf<Edital>()
-                for (doc in snapshot!!) {
+                for (doc in snapshot) {
                     val id = doc.id
                     val title = doc.getString("title")!!
                     val documentPath = doc.getString("documentPath")!!
