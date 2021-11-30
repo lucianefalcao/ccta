@@ -3,9 +3,9 @@ package com.luciane.ccta
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.content.Intent
-import android.util.Log
 import android.widget.ImageButton
 import com.luciane.ccta.activity.chat.ChatActivity
+import com.luciane.ccta.activity.editais.EditaisActivity
 
 class HomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
