@@ -11,7 +11,7 @@ import com.luciane.ccta.R
 import com.luciane.ccta.model.Noticia
 import com.squareup.picasso.Picasso
 
-class NoticiasAdapter(var onItemClick: ((Noticia) -> Unit)? = null)
+class NoticiasAdapter(var layoutSize: Int = 0, var onItemClick: ((String) -> Unit)? = null)
     : RecyclerView.Adapter<NoticiasAdapter.NoticiaItem>() {
 
     private var noticiasList: MutableList<Noticia> = mutableListOf()
@@ -19,6 +19,9 @@ class NoticiasAdapter(var onItemClick: ((Noticia) -> Unit)? = null)
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NoticiaItem {
         val itemView = LayoutInflater.from(parent.context)
             .inflate(R.layout.activity_noticia_item, parent, false)
+
+        itemView.layoutParams.width = layoutSize
+        itemView.layoutParams.height = layoutSize
 
         return NoticiaItem(itemView)
     }
@@ -50,7 +53,7 @@ class NoticiasAdapter(var onItemClick: ((Noticia) -> Unit)? = null)
     inner class NoticiaItem constructor(view: View) : RecyclerView.ViewHolder(view) {
         init {
             view.setOnClickListener {
-                onItemClick?.invoke(noticiasList[adapterPosition])
+                onItemClick?.invoke(noticiasList[adapterPosition].id)
             }
         }
     }
