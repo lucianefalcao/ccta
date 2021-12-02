@@ -56,8 +56,7 @@ class NoticiasActivity : AppCompatActivity() {
     private fun detalhesNoticia(noticiaId: String){
         Log.d(TAG, "Notícia: $noticiaId")
         val intent = Intent(this, DetalhesNoticiaActivity::class.java)
-        //intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-        //intent.putExtra("noticia", noticia)
+        intent.putExtra("noticiaId", noticiaId)
         startActivity(intent)
     }
 }
