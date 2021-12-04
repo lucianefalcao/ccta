@@ -14,6 +14,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.luciane.ccta.activity.chat.ChatActivity
 import com.luciane.ccta.activity.editais.EditaisActivity
 import com.luciane.ccta.activity.editais.EditaisAdapter
+import com.luciane.ccta.activity.events.EventsActivity
 import com.luciane.ccta.activity.noticias.DetalhesNoticiaActivity
 import com.luciane.ccta.activity.noticias.NoticiasActivity
 import com.luciane.ccta.activity.noticias.NoticiasAdapter

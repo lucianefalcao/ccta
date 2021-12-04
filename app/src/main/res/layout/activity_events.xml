@@ -5,53 +5,88 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/pink_2"
-    android:backgroundTint="@color/pink_4"
-    tools:context=".EventsActivity">
+    android:backgroundTint="@color/pink_2"
+    tools:context=".activity.events.EventsActivity">
 
-    <Button
-        android:id="@+id/button6"
+    <HorizontalScrollView
+        android:id="@+id/scrollView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/rounded_button_date"
-        android:text="Seg\n06"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/button5"
-        app:layout_constraintTop_toTopOf="@+id/button5" />
-
-    <Button
-        android:id="@+id/button3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/rounded_button_date"
-        android:text="Sex\n03"
-        app:layout_constraintEnd_toStartOf="@+id/button4"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView25" />
+        app:layout_constraintTop_toBottomOf="@+id/textView25">
 
-    <Button
-        android:id="@+id/button4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/rounded_button_date"
-        android:text="Sab\n04"
-        app:layout_constraintEnd_toStartOf="@+id/button5"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/button3"
-        app:layout_constraintTop_toTopOf="@+id/button3" />
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:orientation="horizontal">
 
-    <Button
-        android:id="@+id/button5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/rounded_button_date"
-        android:text="Dom\n05"
-        app:layout_constraintEnd_toStartOf="@+id/button6"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/button4"
-        app:layout_constraintTop_toTopOf="@+id/button4" />
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/event_button0"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/rounded_button_date"
+                android:text="Sab\n04" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/event_button1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/rounded_button_date"
+                android:text="Seg\n06" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/event_button2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/rounded_button_date"
+                android:text="Sex\n03" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/event_button3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/rounded_button_date"
+                android:text="Dom\n05" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/event_button4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/rounded_button_date"
+                android:text="Dom\n05" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/event_button5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/rounded_button_date"
+                android:text="Dom\n05" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/event_button6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/rounded_button_date"
+                android:text="Dom\n05" />
+
+        </LinearLayout>
+
+    </HorizontalScrollView>
 
     <TextView
         android:id="@+id/textView24"
@@ -79,6 +114,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView24" />
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/cardView2"
         android:layout_width="409dp"
         android:layout_height="0dp"
         android:layout_marginTop="10dp"
@@ -86,7 +122,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button3">
+        app:layout_constraintTop_toBottomOf="@+id/scrollView2">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -96,7 +132,7 @@
             android:paddingTop="20dp">
 
             <TextView
-                android:id="@+id/textView26"
+                android:id="@+id/event_day_label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
@@ -104,9 +140,12 @@
                 android:textSize="18dp"
                 android:textStyle="bold" />
 
-            <include
-                android:id="@+id/firstCard"
-                layout="@layout/card_event" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/event_recycle_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>
