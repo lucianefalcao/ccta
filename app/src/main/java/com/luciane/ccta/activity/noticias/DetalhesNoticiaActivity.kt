@@ -10,12 +10,8 @@ import android.widget.TextView
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import com.luciane.ccta.R
+import com.luciane.ccta.utils.DateTimeFormatter
 import com.squareup.picasso.Picasso
-import java.time.Instant
-import java.time.LocalDateTime
-import java.time.ZoneId
-import java.time.format.DateTimeFormatter
-import java.time.format.FormatStyle
 
 class DetalhesNoticiaActivity : AppCompatActivity() {
     companion object{
@@ -60,7 +56,7 @@ class DetalhesNoticiaActivity : AppCompatActivity() {
 
                     findViewById<TextView>(R.id.textViewTitleDetalheNoticia).text = title
                     findViewById<TextView>(R.id.textViewLastModifiedDetalheNoticia)
-                        .text = getFormatedLastModifiedDateTime(lastModified)
+                        .text = DateTimeFormatter.getFormatedDateTimeFromMilliseconds(lastModified)
 
                     findViewById<TextView>(R.id.textViewContentDetalheNoticia).text =
                         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N){
@@ -71,14 +67,5 @@ class DetalhesNoticiaActivity : AppCompatActivity() {
 
                 }
             }
-    }
-
-    private fun getFormatedLastModifiedDateTime(lastModified: Long): String{
-        val dateTime = LocalDateTime.ofInstant(
-            Instant.ofEpochMilli(lastModified),
-            ZoneId.systemDefault()
-        )
-        val formatter = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.LONG, FormatStyle.SHORT)
-        return dateTime.format(formatter)
     }
 }
