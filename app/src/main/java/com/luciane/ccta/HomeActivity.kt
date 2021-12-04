@@ -14,8 +14,12 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.luciane.ccta.activity.chat.ChatActivity
 import com.luciane.ccta.activity.editais.EditaisActivity
 import com.luciane.ccta.activity.editais.EditaisAdapter
+import com.luciane.ccta.activity.noticias.DetalhesNoticiaActivity
 import com.luciane.ccta.activity.noticias.NoticiasActivity
+import com.luciane.ccta.activity.noticias.NoticiasAdapter
 import com.luciane.ccta.model.Edital
+import com.luciane.ccta.model.Noticia
+import com.luciane.ccta.utils.DPDimensionConverter
 
 class HomeActivity : AppCompatActivity() {
     companion object{
@@ -24,6 +28,9 @@ class HomeActivity : AppCompatActivity() {
 
     private var recyclerViewEditais: RecyclerView? = null
     private var editaisAdapter = EditaisAdapter()
+
+    private var recyclerViewNoticias: RecyclerView? = null
+    private var noticiasAdapter = NoticiasAdapter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,12 +60,22 @@ class HomeActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        val layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL ,false)
+        val editaisLayoutManager =
+            LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL ,false)
         editaisAdapter.downloadManager = getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
         recyclerViewEditais = findViewById(R.id.recyclerViewEditaisHome)
         recyclerViewEditais!!.setAdapter(editaisAdapter)
-        recyclerViewEditais!!.layoutManager = layoutManager
+        recyclerViewEditais!!.layoutManager = editaisLayoutManager
         listenForEditais()
+
+        val noticiasLayoutManager =
+            LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL ,false)
+        noticiasAdapter.layoutSize = DPDimensionConverter.dpToPx(resources.displayMetrics, 264f)
+        noticiasAdapter.onItemClick = { noticiaId -> detalhesNoticia(noticiaId) }
+        recyclerViewNoticias = findViewById(R.id.recyclerViewNoticiasHome)
+        recyclerViewNoticias!!.setAdapter(noticiasAdapter)
+        recyclerViewNoticias!!.layoutManager = noticiasLayoutManager
+        listenForNoticias()
 
     }
 
@@ -84,5 +101,35 @@ class HomeActivity : AppCompatActivity() {
                 editaisAdapter.setEditaisList(editais)
             }
         }
+    }
+
+    private fun listenForNoticias(){
+        val ref = FirebaseFirestore.getInstance().collection("news")
+            .whereEqualTo("state", "published").orderBy("lastModified")
+            .limitToLast(3)
+        ref.addSnapshotListener { snapshot, error ->
+            if (error != null) {
+                Log.w(TAG, "Error on fetch data: ", error)
+                return@addSnapshotListener
+            }
+
+            if (snapshot != null) {
+                val noticias = mutableListOf<Noticia>()
+                for (doc in snapshot) {
+                    val id = doc.id
+                    val title = doc.getString("title")!!
+                    val coverPath = doc.getString("coverPath")!!
+                    noticias.add(Noticia(id, title, coverPath))
+                }
+                noticiasAdapter.setNoticiasList(noticias)
+            }
+        }
+    }
+
+    private fun detalhesNoticia(noticiaId: String){
+        Log.d(TAG, "Notícia: $noticiaId")
+        val intent = Intent(this, DetalhesNoticiaActivity::class.java)
+        intent.putExtra("noticiaId", noticiaId)
+        startActivity(intent)
     }
 }

@@ -145,15 +145,23 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/textViewNoticiasTitleHome" />
 
-    <LinearLayout
-        android:id="@+id/linearLayoutNoticiasHome"
+    <ScrollView
+        android:id="@+id/scrollViewNoticiasHome"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginBottom="8dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toTopOf="@+id/textViewEditaisTitleHome"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewNoticiasTitleHome"></LinearLayout>
+        app:layout_constraintTop_toBottomOf="@+id/textViewNoticiasTitleHome">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewNoticiasHome"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </ScrollView>
 
     <!-- Editais -->
     <TextView
@@ -165,7 +173,7 @@
         android:textSize="22sp"
         app:layout_constraintBottom_toTopOf="@+id/scrollViewEditaisHome"
         app:layout_constraintStart_toStartOf="@+id/textViewNoticiasTitleHome"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayoutNoticiasHome" />
+        app:layout_constraintTop_toBottomOf="@+id/scrollViewNoticiasHome" />
 
     <ScrollView
         android:id="@+id/scrollViewEditaisHome"
