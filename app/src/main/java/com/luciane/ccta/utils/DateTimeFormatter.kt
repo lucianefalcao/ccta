@@ -16,5 +16,11 @@ class DateTimeFormatter {
             val formatter = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.LONG, FormatStyle.SHORT)
             return dateTime.format(formatter)
         }
+
+        fun getCurrentFormatedDateTimeDayMonthYearHourMinute(): String{
+            val currentDateTime = LocalDateTime.now()
+            val formatter = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT, FormatStyle.SHORT)
+            return currentDateTime.format(formatter)
+        }
     }
 }
