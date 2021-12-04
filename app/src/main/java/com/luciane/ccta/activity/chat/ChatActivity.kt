@@ -48,7 +48,7 @@ class ChatActivity : AppCompatActivity() {
     }
 
     private fun listenForMessages(){
-        val fromId = fromId
+        val fromId = this.fromId
         val toId = toId
 
         val ref = FirebaseDatabase.getInstance().getReference("/user-messages/$fromId/$toId")
@@ -89,8 +89,8 @@ class ChatActivity : AppCompatActivity() {
 
         val sendAtDateTime = DateTimeFormatter.getCurrentFormatedDateTimeDayMonthYearHourMinute()
 
-        val fromId = if(chatAdapter.itemCount % 2 == 0) this.fromId!! else toId
-        val toId = if(chatAdapter.itemCount % 2 == 0) toId else this.fromId!!
+        val fromId = this.fromId!!
+        val toId = this.toId
 
         val refFrom = FirebaseDatabase.getInstance()
             .getReference("/user-messages/$fromId/$toId").push()
