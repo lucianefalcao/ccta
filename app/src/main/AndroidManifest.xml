@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.luciane.ccta">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -20,6 +21,12 @@
             android:exported="false" />
         <activity
             android:name=".activity.editais.EditaisActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.news.NewsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.news.NewsDetailsActivity"
             android:exported="false" />
         <activity
             android:name=".TermsActivity"
@@ -50,6 +57,7 @@
             android:exported="true"
             android:label="@string/title_activity_home"
             android:theme="@style/Theme.CCTA.NoActionBar" />
+
         <activity
             android:name=".MainActivity"
             android:exported="true">

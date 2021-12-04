@@ -2,12 +2,12 @@ package com.luciane.ccta
 
 import android.app.DownloadManager
 import android.content.Context
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
 import android.content.Intent
+import android.os.Bundle
 import android.util.Log
 import android.widget.ImageButton
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.firestore.FirebaseFirestore
@@ -17,6 +17,7 @@ import com.luciane.ccta.activity.editais.EditaisAdapter
 import com.luciane.ccta.activity.noticias.DetalhesNoticiaActivity
 import com.luciane.ccta.activity.noticias.NoticiasActivity
 import com.luciane.ccta.activity.noticias.NoticiasAdapter
+import com.luciane.ccta.activity.news.NewsActivity
 import com.luciane.ccta.model.Edital
 import com.luciane.ccta.model.Noticia
 import com.luciane.ccta.utils.DPDimensionConverter
@@ -56,7 +57,7 @@ class HomeActivity : AppCompatActivity() {
         }
 
         findViewById<TextView>(R.id.textViewVerMaisNoticiasHome).setOnClickListener {
-            val intent = Intent(this, NoticiasActivity::class.java)
+            val intent = Intent(this, NewsActivity::class.java)
             startActivity(intent)
         }
 
