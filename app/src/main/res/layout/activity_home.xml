@@ -36,7 +36,7 @@
         android:id="@+id/sobreButtonUserInputHome"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="32dp"
         android:background="@drawable/rounded_button_home"
         app:layout_constraintEnd_toStartOf="@+id/eventosButtonUserInputHome"
         app:layout_constraintStart_toStartOf="parent"
@@ -126,7 +126,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="32dp"
         android:text="Notícias"
         android:textColor="@color/black_1"
         android:textSize="22sp"
@@ -134,7 +134,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textViewSobreHome" />
 
     <TextView
-        android:id="@+id/textViewVerMaisHome"
+        android:id="@+id/textViewVerMaisNoticiasHome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="32dp"
@@ -145,34 +145,51 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/textViewNoticiasTitleHome" />
 
-    <LinearLayout
-        android:id="@+id/linearLayoutNoticiasHome"
+    <ScrollView
+        android:id="@+id/scrollViewNoticiasHome"
         android:layout_width="0dp"
-        android:layout_height="180dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="8dp"
         android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/textViewEditaisTitleHome"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/textViewNoticiasTitleHome"
-        app:layout_constraintTop_toBottomOf="@+id/textViewNoticiasTitleHome"></LinearLayout>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewNoticiasTitleHome">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewNoticiasHome"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </ScrollView>
 
     <!-- Editais -->
     <TextView
         android:id="@+id/textViewEditaisTitleHome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
         android:text="Últimos editais"
         android:textColor="@color/black_1"
         android:textSize="22sp"
+        app:layout_constraintBottom_toTopOf="@+id/scrollViewEditaisHome"
         app:layout_constraintStart_toStartOf="@+id/textViewNoticiasTitleHome"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayoutNoticiasHome" />
+        app:layout_constraintTop_toBottomOf="@+id/scrollViewNoticiasHome" />
 
-    <LinearLayout
-        android:id="@+id/linearLayoutEditaisHome"
+    <ScrollView
+        android:id="@+id/scrollViewEditaisHome"
         android:layout_width="0dp"
-        android:layout_height="180dp"
-        android:orientation="horizontal"
+        android:layout_height="0dp"
+        android:layout_marginBottom="32dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/textViewEditaisTitleHome"
-        app:layout_constraintTop_toBottomOf="@+id/textViewEditaisTitleHome"></LinearLayout>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewEditaisTitleHome">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewEditaisHome"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
