@@ -9,7 +9,6 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.luciane.ccta.R
 import com.luciane.ccta.model.Noticia
 import com.luciane.ccta.utils.DPDimensionConverter
-import kotlin.math.roundToInt
 
 class NoticiasActivity : AppCompatActivity() {
     companion object{
