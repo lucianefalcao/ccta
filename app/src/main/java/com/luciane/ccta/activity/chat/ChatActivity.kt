@@ -14,9 +14,7 @@ import com.google.firebase.database.*
 import com.luciane.ccta.R
 import com.luciane.ccta.model.ChatMessage
 import android.content.SharedPreferences
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
-import java.time.format.FormatStyle
+import com.luciane.ccta.utils.DateTimeFormatter
 
 class ChatActivity : AppCompatActivity() {
     companion object{
@@ -89,7 +87,7 @@ class ChatActivity : AppCompatActivity() {
         val editText = findViewById<EditText>(R.id.editTextUserInputChat)
         val text = editText.text.toString()
 
-        val sendAtDateTime = getFormatedDateTimeDayMonthYearHourMinute()
+        val sendAtDateTime = DateTimeFormatter.getCurrentFormatedDateTimeDayMonthYearHourMinute()
 
         val fromId = if(chatAdapter.itemCount % 2 == 0) this.fromId!! else toId
         val toId = if(chatAdapter.itemCount % 2 == 0) toId else this.fromId!!
@@ -193,11 +191,5 @@ class ChatActivity : AppCompatActivity() {
 
         editor.commit()
 
-    }
-
-    private fun getFormatedDateTimeDayMonthYearHourMinute(): String{
-        val currentDateTime = LocalDateTime.now()
-        val formatter = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT, FormatStyle.SHORT)
-        return currentDateTime.format(formatter)
     }
 }
