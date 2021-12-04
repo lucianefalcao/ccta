@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.storage.FirebaseStorage
 import com.luciane.ccta.R
 import com.luciane.ccta.model.Edital
+import com.luciane.ccta.utils.DateTimeFormatter
 
 class EditaisAdapter(var downloadManager: DownloadManager? = null)
     : RecyclerView.Adapter<EditaisAdapter.EditalItem>() {
@@ -27,7 +28,7 @@ class EditaisAdapter(var downloadManager: DownloadManager? = null)
     override fun onBindViewHolder(holder: EditalItem, position: Int) {
         val edital = this.editaisList[position]
         val title = edital.title
-        val lastModifiedDateTime = edital.getFormatedLastModifiedDateTime()
+        val lastModifiedDateTime = DateTimeFormatter.getFormatedDateTimeFromMilliseconds(edital.lastModified)
 
         holder.itemView.findViewById<TextView>(R.id.textViewTitleEditalItem).text = title
         holder.itemView
