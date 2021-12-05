@@ -28,7 +28,7 @@
             android:name=".TermsActivity"
             android:exported="false" />
         <activity
-            android:name=".activity.ForgotPasswordActivity"
+            android:name=".ForgotPasswordActivity"
             android:exported="false" />
         <activity
             android:name=".RegistrationActivity"
