@@ -3,19 +3,14 @@ package com.luciane.ccta
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.util.Log
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.firestore.FirebaseFirestore
-import com.luciane.ccta.activity.editais.EditaisAdapter
-import com.luciane.ccta.activity.noticias.DetalhesNoticiaActivity
-import com.luciane.ccta.activity.noticias.NoticiasActivity
 import com.luciane.ccta.model.Course
-import com.luciane.ccta.model.Edital
-import com.luciane.ccta.utils.DPDimensionConverter
 
 class AboutCenterActivity : AppCompatActivity(){
     companion object{
@@ -72,6 +67,9 @@ class AboutCenterActivity : AppCompatActivity(){
         ref.addSnapshotListener { snapshot, error ->
             if (error != null) {
                 Log.w(AboutCenterActivity.TAG, "Error on fetch data: ", error)
+                Toast.makeText(this@AboutCenterActivity, "Ops, parece que não foi possivel carregar os cursos"
+                    , Toast.LENGTH_SHORT).show()
+
                 return@addSnapshotListener
             }
 
@@ -87,7 +85,7 @@ class AboutCenterActivity : AppCompatActivity(){
                     val description = doc.getString("description")!!
                     val lastModified = doc.getLong("lastModified")!!
                     val userUid = doc.getString("userUid")!!
-                    courses.add(Course(id, name, subType, type, nrPeriods, description, turno, lastModified, userUid))
+                    courses.add(Course(id, description, lastModified, name, nrPeriods, subType, turno, type, userUid))
                 }
                 aboutCenterAdapter.setCourseList(courses)
             }

@@ -85,24 +85,6 @@
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:id="@+id/coursesTitleList"/>
-
-                <TextView
-                    android:id="@+id/textView12"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/roboto_light"
-                    android:paddingStart="45dp"
-                    android:paddingTop="0dp"
-                    android:paddingEnd="45dp"
-                    android:paddingBottom="45dp"
-                    android:text=""
-                    android:textColor="@color/black"
-                    android:textSize="16sp" />
-
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerViewCursos"
                 android:layout_width="match_parent"

@@ -18,7 +18,7 @@ import com.luciane.ccta.activity.events.EventsActivity
 import com.luciane.ccta.activity.noticias.DetalhesNoticiaActivity
 import com.luciane.ccta.activity.noticias.NoticiasActivity
 import com.luciane.ccta.activity.noticias.NoticiasAdapter
-import com.luciane.ccta.activity.aboutCenter.AboutCenterActivity
+import com.luciane.ccta.AboutCenterActivity
 import com.luciane.ccta.model.Edital
 import com.luciane.ccta.model.Noticia
 import com.luciane.ccta.utils.DPDimensionConverter
