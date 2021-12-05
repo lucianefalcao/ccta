@@ -28,7 +28,7 @@ class EventsAdapter : RecyclerView.Adapter<EventsAdapter.EventViewHolder>() {
         val title = holder.itemView.findViewById<TextView>(R.id.event_title)
         val description = holder.itemView.findViewById<TextView>(R.id.event_description)
 
-        hour.text = DateTimeFormatter.getTimeFromMilliseconds(event.lastModified)
+        hour.text = DateTimeFormatter.getTimeFromMilliseconds(event.date)
         title.text = event.title
         description.text = event.description
     }
