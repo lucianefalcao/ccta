@@ -3,6 +3,7 @@ package com.luciane.ccta.activity.chat
 import android.app.Activity
 import android.app.AlertDialog
 import android.content.DialogInterface
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.InputType
@@ -14,6 +15,11 @@ import com.google.firebase.database.*
 import com.luciane.ccta.R
 import com.luciane.ccta.model.ChatMessage
 import android.content.SharedPreferences
+import android.os.Handler
+import androidx.navigation.NavController
+import com.google.android.gms.tasks.Task
+import com.luciane.ccta.HomeActivity
+import com.luciane.ccta.activity.noticias.NoticiasActivity
 import com.luciane.ccta.model.Visitante
 import com.luciane.ccta.utils.DateTimeFormatter
 
@@ -51,6 +57,7 @@ class ChatActivity : AppCompatActivity() {
 
     private fun listenForMessages(){
         val ref = FirebaseDatabase.getInstance().getReference("/chats/$chatId/messages")
+        val that = this
         ref.addChildEventListener(object: ChildEventListener {
             override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
                 val chatMessage = snapshot.getValue(ChatMessage::class.java)
@@ -68,7 +75,14 @@ class ChatActivity : AppCompatActivity() {
             }
 
             override fun onChildRemoved(snapshot: DataSnapshot) {
-                TODO("Not yet implemented")
+                val builder: AlertDialog.Builder = android.app.AlertDialog.Builder(that)
+                builder.setTitle("Seu chat foi encerrado")
+                builder.setMessage("você sempre pode abrir uma nova conversa!")
+                builder.show()
+
+                Handler().postDelayed(Runnable {
+                    finish()
+                }, 3000)
             }
 
             override fun onChildMoved(snapshot: DataSnapshot, previousChildName: String?) {
