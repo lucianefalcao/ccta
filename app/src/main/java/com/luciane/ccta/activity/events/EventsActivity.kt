@@ -45,7 +45,7 @@ class EventsActivity : AppCompatActivity() {
         val temp = LocalDateTime.now()
 
         val startDate = LocalDateTime.of(temp.year, temp.month, temp.dayOfMonth, 0, 0)
-        val endDate = startDate.plusDays(1)
+        val endDate = startDate.plusDays(7)
 
         val start = startDate.atZone(ZoneId.systemDefault()).toEpochSecond() * 1000
         val end = endDate.atZone(ZoneId.systemDefault()).toEpochSecond() * 1000
