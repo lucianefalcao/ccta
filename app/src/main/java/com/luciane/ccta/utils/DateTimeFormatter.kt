@@ -32,5 +32,9 @@ class DateTimeFormatter {
 
             return "${dateTime.hour} : ${dateTime.minute} $turn"
         }
+
+        fun getCurrentTimestamp(): Long{
+            return Instant.now().toEpochMilli()
+        }
     }
 }

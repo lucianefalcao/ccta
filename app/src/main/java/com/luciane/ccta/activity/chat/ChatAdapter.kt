@@ -7,6 +7,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.luciane.ccta.R
 import com.luciane.ccta.model.ChatMessage
+import com.luciane.ccta.utils.DateTimeFormatter
 
 class ChatAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private val CHATTO = 0
@@ -30,8 +31,8 @@ class ChatAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val message = this.messageList[position]
-        val text = message.text
-        val sendAtDateTime = message.sendAtDateTime
+        val text = message.message
+        val sendAtDateTime = DateTimeFormatter.getFormatedDateTimeFromMilliseconds(message.timestamp)
 
         if(holder.itemViewType == CHATTO){
             val viewItem = holder as ChatItem
