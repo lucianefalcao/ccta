@@ -14,6 +14,7 @@ import com.google.firebase.database.*
 import com.luciane.ccta.R
 import com.luciane.ccta.model.ChatMessage
 import android.content.SharedPreferences
+import com.luciane.ccta.model.Visitante
 import com.luciane.ccta.utils.DateTimeFormatter
 
 class ChatActivity : AppCompatActivity() {
@@ -25,11 +26,12 @@ class ChatActivity : AppCompatActivity() {
     private var chatAdapter = ChatAdapter()
 
     private var name: String? = null
+    private var chatId: String? = null
     private var fromId: String? = null
-    private val toId = "admin"
 
     private val KEY_UID = "com.luciane.ccta.UID"
     private val KEY_NAME = "com.luciane.ccta.NAME"
+    private val KEY_CHAT = "com.luciane.ccta.CHAT"
     private val USER_PREFS = "USER_PREFS"
     private var userSharedPreferences: SharedPreferences? = null
 
@@ -48,15 +50,12 @@ class ChatActivity : AppCompatActivity() {
     }
 
     private fun listenForMessages(){
-        val fromId = this.fromId
-        val toId = toId
-
-        val ref = FirebaseDatabase.getInstance().getReference("/user-messages/$fromId/$toId")
+        val ref = FirebaseDatabase.getInstance().getReference("/chats/$chatId/messages")
         ref.addChildEventListener(object: ChildEventListener {
             override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
                 val chatMessage = snapshot.getValue(ChatMessage::class.java)
-                Log.d(TAG, chatMessage?.text!!)
-                if(chatMessage.fromId == fromId){
+                Log.d(TAG, chatMessage?.message!!)
+                if(chatMessage.memberId == fromId){
                     chatMessage.type = ChatMessage.MessageType.RIGHT
                 } else{
                     chatMessage.type = ChatMessage.MessageType.LEFT
@@ -87,55 +86,19 @@ class ChatActivity : AppCompatActivity() {
         val editText = findViewById<EditText>(R.id.editTextUserInputChat)
         val text = editText.text.toString()
 
-        val sendAtDateTime = DateTimeFormatter.getCurrentFormatedDateTimeDayMonthYearHourMinute()
+        val refMessages = FirebaseDatabase.getInstance()
+            .getReference("/chats/$chatId/messages").push()
 
-        val fromId = this.fromId!!
-        val toId = this.toId
+        val chatMessage = ChatMessage(fromId!!, text, fromId!!, DateTimeFormatter.getCurrentTimestamp())
 
-        val refFrom = FirebaseDatabase.getInstance()
-            .getReference("/user-messages/$fromId/$toId").push()
-        val refTo = FirebaseDatabase.getInstance()
-            .getReference("/user-messages/$toId/$fromId").push()
-
-        val chatMessage = ChatMessage(refFrom.key!!, text, fromId, toId, sendAtDateTime)
-
-        refFrom.setValue(chatMessage)
+        refMessages.setValue(chatMessage)
             .addOnSuccessListener {
-                Log.d(TAG, "Saved our chat message: ${refFrom.key}")
+                Log.d(TAG, "Saved our chat message: ${refMessages.key}")
                 editText.text.clear()
                 recyclerViewChatLog!!.scrollToPosition(chatAdapter.itemCount - 1)
             }
             .addOnFailureListener {
                 Log.d(TAG, "Failed to send message:\n${it.message}")
-            }
-
-        refTo.setValue(chatMessage)
-            .addOnSuccessListener {
-                Log.d(TAG, "Saved our chat message: ${refTo.key}")
-            }
-            .addOnFailureListener {
-                Log.d(TAG, "Failed to send message:\n${it.message}")
-            }
-
-        val refLatestMessageFrom = FirebaseDatabase.getInstance()
-            .getReference("/latest-messages/$fromId/$toId")
-        val refLatestMessageTo = FirebaseDatabase.getInstance()
-            .getReference("/latest-messages/$toId/$fromId")
-
-        refLatestMessageFrom.setValue(chatMessage)
-            .addOnSuccessListener {
-                Log.d(TAG, "Latest message saved: ${refLatestMessageFrom.key}")
-            }
-            .addOnFailureListener {
-                Log.d(TAG, "Failed to save latest message:\n${it.message}")
-            }
-
-        refLatestMessageTo.setValue(chatMessage)
-            .addOnSuccessListener {
-                Log.d(TAG, "Latest message saved: ${refLatestMessageTo.key}")
-            }
-            .addOnFailureListener {
-                Log.d(TAG, "Failed to save latest message:\n${it.message}")
             }
     }
 
@@ -146,7 +109,16 @@ class ChatActivity : AppCompatActivity() {
             showInputDialog()
         } else {
             fromId = userSharedPreferences!!.getString(KEY_UID, null)
-            listenForMessages()
+            chatId = userSharedPreferences!!.getString(KEY_CHAT, null)
+
+            val chatRef = FirebaseDatabase.getInstance().getReference("/chats/$chatId")
+            chatRef.get().addOnSuccessListener {
+                if(it.exists()){
+                    listenForMessages()
+                } else {
+                    saveUserPreferences(name!!)
+                }
+            }
         }
     }
 
@@ -179,8 +151,20 @@ class ChatActivity : AppCompatActivity() {
 
     private fun saveUserPreferences(name: String){
         this.name = name
-        val refFrom = FirebaseDatabase.getInstance().getReference("/user-messages").push()
-        fromId = refFrom.key
+        val refChat = FirebaseDatabase.getInstance().getReference("/chats").push()
+        chatId = refChat.key
+
+        val refVisitante = FirebaseDatabase.getInstance()
+            .getReference("/chats/${refChat.key}/visitante").push()
+        fromId = refVisitante.key
+        val visitante = Visitante(fromId!!, name!!)
+        refVisitante.setValue(visitante)
+            .addOnSuccessListener {
+                Log.d(TAG, "User saved successfully: $fromId")
+            }
+            .addOnFailureListener {
+                Log.d(TAG, "Failed to send message:\n${it.message}")
+            }
         Log.d(TAG, "User uid generated successfully: $fromId")
 
         listenForMessages()
@@ -188,6 +172,7 @@ class ChatActivity : AppCompatActivity() {
         val editor: SharedPreferences.Editor = userSharedPreferences!!.edit()
         editor.putString(KEY_NAME, name)
         editor.putString(KEY_UID, fromId)
+        editor.putString(KEY_CHAT, chatId)
 
         editor.commit()
 
