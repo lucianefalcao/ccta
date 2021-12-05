@@ -2,12 +2,12 @@ package com.luciane.ccta
 
 import android.app.DownloadManager
 import android.content.Context
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
 import android.content.Intent
+import android.os.Bundle
 import android.util.Log
 import android.widget.ImageButton
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.firestore.FirebaseFirestore
@@ -18,6 +18,7 @@ import com.luciane.ccta.activity.events.EventsActivity
 import com.luciane.ccta.activity.noticias.DetalhesNoticiaActivity
 import com.luciane.ccta.activity.noticias.NoticiasActivity
 import com.luciane.ccta.activity.noticias.NoticiasAdapter
+import com.luciane.ccta.activity.aboutCenter.AboutCenterActivity
 import com.luciane.ccta.model.Edital
 import com.luciane.ccta.model.Noticia
 import com.luciane.ccta.utils.DPDimensionConverter

@@ -40,6 +40,8 @@
                 android:orientation="vertical"
                 android:paddingBottom="45dp">
 
+
+
                 <TextView
                     android:id="@+id/textView3"
                     android:layout_width="match_parent"
@@ -85,45 +87,21 @@
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
-                <TextView
-                    android:id="@+id/textView6"
+                <androidx.recyclerview.widget.RecyclerView
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/roboto_light"
-                    android:justificationMode="inter_word"
-                    android:paddingLeft="45dp"
-                    android:paddingTop="0dp"
-                    android:paddingEnd="0dp"
-                    android:paddingBottom="0dp"
-                    android:text="- Hotelaria"
-                    android:textColor="@color/black"
-                    android:textSize="16sp" />
-
-                <TextView
-                    android:id="@+id/textView11"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/roboto_light"
-                    android:justificationMode="inter_word"
-                    android:paddingLeft="45dp"
-                    android:paddingTop="0dp"
-                    android:paddingEnd="0dp"
-                    android:paddingBottom="0dp"
-                    android:text="- Jornalismo"
-                    android:textColor="@color/black"
-                    android:textSize="16sp" />
+                    android:layout_height="match_parent"
+                    android:id="@+id/coursesTitleList"/>
 
                 <TextView
                     android:id="@+id/textView12"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/roboto_light"
-                    android:justificationMode="inter_word"
-                    android:paddingLeft="45dp"
+                    android:paddingStart="45dp"
                     android:paddingTop="0dp"
                     android:paddingEnd="45dp"
                     android:paddingBottom="45dp"
-                    android:text="- Música"
+                    android:text=""
                     android:textColor="@color/black"
                     android:textSize="16sp" />
 
@@ -132,7 +110,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/roboto_light"
-                    android:paddingLeft="45dp"
+                    android:paddingStart="45dp"
                     android:paddingTop="0dp"
                     android:paddingEnd="0dp"
                     android:paddingBottom="45dp"
@@ -147,7 +125,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/roboto_light"
                     android:justificationMode="inter_word"
-                    android:paddingLeft="45dp"
+                    android:paddingStart="45dp"
                     android:paddingTop="0dp"
                     android:paddingEnd="0dp"
                     android:paddingBottom="0dp"
@@ -161,7 +139,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/roboto_light"
                     android:justificationMode="inter_word"
-                    android:paddingLeft="45dp"
+                    android:paddingStart="45dp"
                     android:paddingTop="0dp"
                     android:paddingEnd="0dp"
                     android:paddingBottom="0dp"
