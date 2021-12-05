@@ -30,7 +30,6 @@ class VerticalNewsAdapter (val newsList : ArrayList<News>, val context: Context)
 
 
     override fun onBindViewHolder(holder: MyNews, position: Int){
-
         val news = newsList[position]
         val formattedData = formatData(news.lastModified)
         with(holder) {

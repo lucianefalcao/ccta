@@ -5,8 +5,8 @@
     android:clickable="true"
     android:focusable="true"
     android:id="@+id/horizontalCardLayout"
-    android:layout_width="265dp"
-    android:layout_height="265dp"
+    android:layout_width="265sp"
+    android:layout_height="265sp"
     android:layout_alignParentStart="true"
     android:layout_alignParentTop="true"
     android:layout_marginStart="32dp"
@@ -51,7 +51,7 @@
 
     <TextView
         android:id="@+id/horizontalCardTitle"
-        android:layout_width="181dp"
+        android:layout_width="181sp"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"

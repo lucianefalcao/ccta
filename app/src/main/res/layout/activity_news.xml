@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="34dp"
-        android:layout_marginTop="57dp"
+        android:layout_marginTop="32dp"
         android:text="Veja as nossas"
         android:textColor="#FE4E5A"
         android:textSize="15sp"
@@ -50,13 +50,13 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="438dp"
+        android:layout_marginTop="32dp"
         android:gravity="top"
         android:text="Popular"
-        android:textSize="20sp"
         android:textColor="#1E2022"
+        android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView" />
 
     <TextView
         android:id="@+id/verMaisPupularNewsButton"
@@ -64,19 +64,22 @@
         android:layout_height="16dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="292dp"
-        android:layout_marginTop="445dp"
+        android:layout_marginTop="38dp"
+        android:layout_marginEnd="32dp"
         android:gravity="top"
         android:text="ver mais"
         android:textColor="#FE4E5A"
         android:textSize="12sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView" />
 
     <ScrollView
-        android:layout_width="412dp"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
         android:layout_marginTop="24dp"
+        android:padding="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/popular">
 
@@ -88,33 +91,33 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/newsVerticalList"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:orientation="vertical" />
         </LinearLayout>
     </ScrollView>
 
     <HorizontalScrollView
-        android:layout_width="wrap_content"
+        android:id="@+id/horizontalScrollView"
+        android:layout_width="0dp"
         android:layout_height="265dp"
         android:layout_marginTop="24dp"
-        android:layout_marginBottom="32dp"
-        app:layout_constraintBottom_toTopOf="@+id/popular"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView25"
-        app:layout_constraintVertical_bias="0.615">
+        app:layout_constraintTop_toBottomOf="@+id/textView25">
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/newsHorizontalList"
-            android:layout_width="wrap_content"
-            android:layout_height="265dp"
-            android:orientation="horizontal" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/newsHorizontalList"
+                android:layout_width="wrap_content"
+                android:layout_height="265dp"
+                android:orientation="horizontal" />
 
             <View
                 android:layout_width="32dp"
-                android:layout_height="0dp"/>
+                android:layout_height="0dp" />
         </LinearLayout>
     </HorizontalScrollView>
 
