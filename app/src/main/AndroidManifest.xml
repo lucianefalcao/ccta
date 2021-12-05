@@ -13,6 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CCTA.NoActionBar">
         <activity
+            android:name=".DetalhesCursoActivity"
+            android:exported="false" />
+        <activity
             android:name=".activity.events.EventsActivity"
             android:exported="false" />
         <activity

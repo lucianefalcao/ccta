@@ -54,13 +54,12 @@
                     android:textSize="18sp" />
 
                 <TextView
-                    android:id="@+id/textView4"
+                    android:id="@+id/about_center"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/roboto_light"
                     android:justificationMode="inter_word"
                     android:padding="45dp"
-                    android:text="@string/about_center"
                     android:textColor="@color/black"
                     android:textSize="16sp" />
 
@@ -71,105 +70,29 @@
                     android:paddingBottom="40dp"
                     app:srcCompat="@drawable/ccta_map" />
 
-                <TextView
-                    android:id="@+id/textView5"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/roboto_light"
-                    android:paddingLeft="45dp"
-                    android:paddingTop="0dp"
-                    android:paddingEnd="0dp"
-                    android:paddingBottom="45dp"
-                    android:text="Cursos"
-                    android:textColor="@color/black"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto_light"
+                android:paddingLeft="45dp"
+                android:paddingTop="0dp"
+                android:paddingEnd="0dp"
+                android:paddingBottom="45dp"
+                android:text="Cursos"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
-                <TextView
-                    android:id="@+id/textView6"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/roboto_light"
-                    android:justificationMode="inter_word"
-                    android:paddingLeft="45dp"
-                    android:paddingTop="0dp"
-                    android:paddingEnd="0dp"
-                    android:paddingBottom="0dp"
-                    android:text="- Hotelaria"
-                    android:textColor="@color/black"
-                    android:textSize="16sp" />
-
-                <TextView
-                    android:id="@+id/textView11"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/roboto_light"
-                    android:justificationMode="inter_word"
-                    android:paddingLeft="45dp"
-                    android:paddingTop="0dp"
-                    android:paddingEnd="0dp"
-                    android:paddingBottom="0dp"
-                    android:text="- Jornalismo"
-                    android:textColor="@color/black"
-                    android:textSize="16sp" />
-
-                <TextView
-                    android:id="@+id/textView12"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/roboto_light"
-                    android:justificationMode="inter_word"
-                    android:paddingLeft="45dp"
-                    android:paddingTop="0dp"
-                    android:paddingEnd="45dp"
-                    android:paddingBottom="45dp"
-                    android:text="- Música"
-                    android:textColor="@color/black"
-                    android:textSize="16sp" />
-
-                <TextView
-                    android:id="@+id/textView16"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/roboto_light"
-                    android:paddingLeft="45dp"
-                    android:paddingTop="0dp"
-                    android:paddingEnd="0dp"
-                    android:paddingBottom="45dp"
-                    android:text="Diretores"
-                    android:textColor="@color/black"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/textView14"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/roboto_light"
-                    android:justificationMode="inter_word"
-                    android:paddingLeft="45dp"
-                    android:paddingTop="0dp"
-                    android:paddingEnd="0dp"
-                    android:paddingBottom="0dp"
-                    android:text="- Prof. Dra. Fabiana Siqueira"
-                    android:textColor="@color/black"
-                    android:textSize="16sp" />
-
-                <TextView
-                    android:id="@+id/textView15"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/roboto_light"
-                    android:justificationMode="inter_word"
-                    android:paddingLeft="45dp"
-                    android:paddingTop="0dp"
-                    android:paddingEnd="0dp"
-                    android:paddingBottom="0dp"
-                    android:text="- Prof. Dra. Fabiana Siqueira"
-                    android:textColor="@color/black"
-                    android:textSize="16sp" />
-
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewCursos"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingLeft="45dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                />
             </LinearLayout>
+
         </ScrollView>
 
     </androidx.cardview.widget.CardView>
