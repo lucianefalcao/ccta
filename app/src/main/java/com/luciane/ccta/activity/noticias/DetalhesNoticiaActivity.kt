@@ -1,12 +1,14 @@
 package com.luciane.ccta.activity.noticias
 
+import android.content.Intent
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Html
 import android.util.Log
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import com.luciane.ccta.R
@@ -29,6 +31,33 @@ class DetalhesNoticiaActivity : AppCompatActivity() {
             finish()
 
         listenForNoticiaChanges(noticiaId!!)
+
+        val buttonShare = findViewById<ImageButton>(R.id.btnShare)
+
+        buttonShare.setOnClickListener {
+            FirebaseFirestore.getInstance().collection("news").document(noticiaId).addSnapshotListener{ value, e ->
+                if (e != null) {
+                    Log.w(TAG, "Listen failed.", e)
+                    return@addSnapshotListener
+                }
+
+                if (value != null && value.getString("state")!! == "published") {
+                    val title = value.getString("title")!!
+                    //val newsText = value.getString("newsText")!!
+                    val linkApp = "https://play.google.com/store?hl=pt_BR&gl=US"
+
+                    val sendIntent = Intent(Intent.ACTION_SEND)
+                    sendIntent.type = "text/*"
+                    sendIntent.putExtra(Intent.EXTRA_TEXT, title + "...\n" +
+                            "\n(Para vizualizar a notícia completa baixe o app do CCTA $linkApp)")
+                    val shareIntent = Intent.createChooser(sendIntent, "enviando noticia")
+                    startActivity(shareIntent)
+
+                } else {
+                    Log.d(TAG, "Current data: null")
+                }
+            }
+        }
     }
 
     private fun listenForNoticiaChanges(noticiaId: String){
